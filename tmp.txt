@@ -1,0 +1,8 @@
+  {
+              Material.map(value =>(
+                <div>
+                  <h1>{value.label}</h1>
+                  <h1>{value.stock}</h1>
+                </div>
+              ))
+            }
