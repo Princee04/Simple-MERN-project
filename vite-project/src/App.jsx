@@ -10,7 +10,6 @@ import TableMaterial from "../components/tableMaterial"
 function App() {
  
   return <>  
-      <h1>Tableau récapitulatif des Materiels informatiques</h1>
       <TableMaterial></TableMaterial>
     </>
 }

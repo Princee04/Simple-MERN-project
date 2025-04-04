@@ -1,0 +1,21 @@
+thead th{
+    position: sticky;
+    top: 0;
+    background: rgb(109, 70, 70); /* Fixe le header et évite qu'il soit caché */
+    /* z-index: 10; */
+  }
+#root{
+  background: whitesmoke;
+}
+
+tbody tr td{
+  cursor: pointer;
+}
+
+tbody tr td #info-button{
+  cursor:help;
+}
+
+.body{
+  background: white;
+}
