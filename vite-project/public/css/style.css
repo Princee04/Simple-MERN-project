@@ -1,7 +1,8 @@
 thead th{
+    cursor: pointer;
     position: sticky;
     top: 0;
-    background: rgb(109, 70, 70); /* Fixe le header et évite qu'il soit caché */
+    background: rgb(136, 121, 121); /* Fixe le header et évite qu'il soit caché */
     /* z-index: 10; */
   }
 #root{
@@ -16,6 +17,15 @@ tbody tr td #info-button{
   cursor:help;
 }
 
+tbody tr td #modify-button{
+  cursor:cell
+}
+
 .body{
   background: white;
 }
+
+.swal-text-preline {
+  white-space: pre-line;
+}
+
