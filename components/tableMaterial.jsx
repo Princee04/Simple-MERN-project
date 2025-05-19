@@ -1954,13 +1954,16 @@ export default function TableMaterial() {
           }
           className="mb-3"
         >
-          <div className="form-group d-flex justify-content-center">
-            <label htmlFor="user" className="form-label h3 m-3">
-              Entrer la Matricule de l'utilisateur (facultatif si on n'a pas
-              encore d'utilisateur):
+          <div className="form-group d-flex justify-content-center align-items-center my-4">
+            <label htmlFor="userCode" className="form-label h5 me-3">
+              Matricule utilisateur (facultatif) :
             </label>
             <input
+              id="userCode"
               type="number"
+              className="form-control w-auto"
+              style={{ maxWidth: "200px" }}
+              placeholder="Enter ici la Matricule"
               value={insertDevices.personnals.newPersonal.userCode || ""}
               onChange={(e) =>
                 setInsertDevices((prev) => ({
@@ -1976,6 +1979,7 @@ export default function TableMaterial() {
               }
             />
           </div>
+
           <div>
             <div className="fw-bold ">
               <h1>
