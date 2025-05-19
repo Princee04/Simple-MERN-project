@@ -1,0 +1,41 @@
+thead th{
+    cursor:crosshair;
+    position:sticky;
+    top:0;
+    background: rgb(136, 121, 121);
+    /* z-index: 10; */
+  }
+
+#root{
+  background: whitesmoke;
+}
+
+tbody tr td{
+  cursor: pointer;
+}
+
+tbody tr td #info-button{
+  cursor:help;
+}
+
+tbody tr td #modify-button{
+  cursor:cell
+}
+
+.body{
+  background: white;
+}
+
+.swal-text-preline {
+  white-space: pre-line;
+}
+
+/* nav .container{
+  position:fixed;
+  top:'50%';
+} */
+
+/* #addButton,#exportButton{
+  
+} */
+
