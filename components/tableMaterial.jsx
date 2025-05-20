@@ -2870,7 +2870,7 @@ export default function TableMaterial() {
                           </div>
                         )}
                         {device.extraComponent.length > 0 &&
-                          device.extraComponent.map((indexP,c) => (
+                          device.extraComponent.map((indexP, c) => (
                             <div
                               key={indexP}
                               className="card p-4 mb-4 shadow-sm"
@@ -2887,13 +2887,10 @@ export default function TableMaterial() {
                                         d.id === device.id
                                           ? {
                                               ...d,
-                                              component: Object.fromEntries(
-                                                Object.entries(
-                                                  d.component
-                                                ).filter(
-                                                  ([key]) => key !== indexP
-                                                )
-                                              ),
+                                              extraComponent:
+                                                d.extraComponent.filter(
+                                                  (_, index) => index != c
+                                                ),
                                             }
                                           : d
                                       ),
