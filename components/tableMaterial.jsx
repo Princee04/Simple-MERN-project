@@ -1934,7 +1934,10 @@ export default function TableMaterial() {
         onRequestClose={() => setShowForm(false)}
         className=""
       >
-        <div className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+        <div
+          style={{ position: "sticky" }}
+          className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3"
+        >
           <h1 className="modal-title mb-0 fs-4">
             Ajout des nouveaux matériels
           </h1>
@@ -2561,271 +2564,314 @@ export default function TableMaterial() {
                               )}
                           </div>
                         ) : (
-                          Object.entries(device.component).map(
-                            ([indexP, c]) => (
-                              <div
-                                key={indexP}
-                                className="card p-4 mb-4 shadow-sm"
-                              >
-                                {/* Header avec le nom du composant et le bouton X */}
-                                <div className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-                                  <h5 className="mb-0 text-primary">
-                                    {indexP}
-                                  </h5>
-                                  <button
-                                    className="btn btn-outline-danger btn-sm"
-                                    onClick={() => {
-                                      setInsertDevices((prev) => ({
-                                        ...prev,
-                                        devices: prev.devices.map((d) =>
-                                          d.id === device.id
-                                            ? {
-                                                ...d,
-                                                component: Object.fromEntries(
-                                                  Object.entries(
-                                                    d.component
-                                                  ).filter(
-                                                    ([key]) => key !== indexP
-                                                  )
-                                                ),
-                                              }
-                                            : d
-                                        ),
-                                      }));
-                                    }}
+                          <div>
+                            <div>
+                              {Object.entries(device.component).map(
+                                ([indexP, c]) => (
+                                  <div
+                                    key={indexP}
+                                    className="card p-4 mb-4 shadow-sm"
                                   >
-                                    Supprimer
-                                  </button>
-                                </div>
+                                    {/* Header avec le nom du composant et le bouton X */}
+                                    <div className="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                                      <h5 className="mb-0 text-primary">
+                                        {indexP}
+                                      </h5>
+                                      <button
+                                        className="btn btn-outline-danger btn-sm"
+                                        onClick={() => {
+                                          setInsertDevices((prev) => ({
+                                            ...prev,
+                                            devices: prev.devices.map((d) =>
+                                              d.id === device.id
+                                                ? {
+                                                    ...d,
+                                                    component:
+                                                      Object.fromEntries(
+                                                        Object.entries(
+                                                          d.component
+                                                        ).filter(
+                                                          ([key]) =>
+                                                            key !== indexP
+                                                        )
+                                                      ),
+                                                  }
+                                                : d
+                                            ),
+                                          }));
+                                        }}
+                                      >
+                                        Supprimer
+                                      </button>
+                                    </div>
 
-                                {/* Champs du composant */}
-                                {isComponentOptions(device.type, indexP) ? (
-                                  <>
-                                    {isComponent(device.type, indexP) && (
-                                      <div className="row g-3 mb-3">
-                                        <div className="col-md-3">
-                                          <label className="form-label">
-                                            Numéro de Série
-                                          </label>
-                                          <input
-                                            type="text"
-                                            className="form-control"
-                                            value={c.serialNumber || ""}
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "serialNumber",
-                                                e.target.value
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                        <div className="col-md-3">
-                                          <label className="form-label">
-                                            Marque
-                                          </label>
-                                          <input
-                                            type="text"
-                                            className="form-control"
-                                            value={c.marque || ""}
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "marque",
-                                                e.target.value
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                        <div className="col-md-3">
-                                          <label className="form-label">
-                                            Modèle
-                                          </label>
-                                          <input
-                                            type="text"
-                                            className="form-control"
-                                            value={c.model || ""}
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "model",
-                                                e.target.value
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                        <div className="col-md-3">
-                                          <label className="form-label">
-                                            Date d'achat
-                                          </label>
-                                          <input
-                                            type="date"
-                                            className="form-control"
-                                            value={
-                                              c.purchase_date ||
-                                              new Date()
-                                                .toISOString()
-                                                .split("T")[0]
-                                            }
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "purchase_date",
-                                                e.target.value
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                      </div>
-                                    )}
+                                    {/* Champs du composant */}
+                                    {isComponentOptions(device.type, indexP) ? (
+                                      <>
+                                        {isComponent(device.type, indexP) && (
+                                          <div className="row g-3 mb-3">
+                                            <div className="col-md-3">
+                                              <label className="form-label">
+                                                Numéro de Série
+                                              </label>
+                                              <input
+                                                type="text"
+                                                className="form-control"
+                                                value={c.serialNumber || ""}
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "serialNumber",
+                                                    e.target.value
+                                                  )
+                                                }
+                                              />
+                                            </div>
+                                            <div className="col-md-3">
+                                              <label className="form-label">
+                                                Marque
+                                              </label>
+                                              <input
+                                                type="text"
+                                                className="form-control"
+                                                value={c.marque || ""}
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "marque",
+                                                    e.target.value
+                                                  )
+                                                }
+                                              />
+                                            </div>
+                                            <div className="col-md-3">
+                                              <label className="form-label">
+                                                Modèle
+                                              </label>
+                                              <input
+                                                type="text"
+                                                className="form-control"
+                                                value={c.model || ""}
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "model",
+                                                    e.target.value
+                                                  )
+                                                }
+                                              />
+                                            </div>
+                                            <div className="col-md-3">
+                                              <label className="form-label">
+                                                Date d'achat
+                                              </label>
+                                              <input
+                                                type="date"
+                                                className="form-control"
+                                                value={
+                                                  c.purchase_date ||
+                                                  new Date()
+                                                    .toISOString()
+                                                    .split("T")[0]
+                                                }
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "purchase_date",
+                                                    e.target.value
+                                                  )
+                                                }
+                                              />
+                                            </div>
+                                          </div>
+                                        )}
 
-                                    <div className="row g-3">
-                                      {isComponentCapacity(
-                                        device.type,
-                                        indexP
-                                      ) && (
-                                        <div className="col-md-4">
-                                          <label className="form-label">
-                                            Capacité
-                                          </label>
-                                          <input
-                                            type={
-                                              showType(device.type, indexP) ||
-                                              "text"
-                                            }
-                                            className="form-control"
-                                            placeholder={`Entrer ${indexP}`}
-                                            value={c.capacity || ""}
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "capacity",
-                                                e.target.value
-                                              )
-                                            }
-                                            onBlur={() => {
-                                              if (
-                                                (indexP === "RAM" ||
-                                                  indexP === "Stockage") &&
-                                                !isPowerOfTwo(
-                                                  parseInt(c.capacity)
-                                                )
-                                              ) {
-                                                Swal.fire({
-                                                  title: `Valeur invalide pour ${indexP}`,
-                                                  html: `<h4>${indexP} doit être une puissance de 2 (ex: 2, 4, 8, ...)</h4>`,
-                                                  icon: "warning",
-                                                });
+                                        <div className="row g-3">
+                                          {isComponentCapacity(
+                                            device.type,
+                                            indexP
+                                          ) && (
+                                            <div className="col-md-4">
+                                              <label className="form-label">
+                                                Capacité
+                                              </label>
+                                              <input
+                                                type={
+                                                  showType(
+                                                    device.type,
+                                                    indexP
+                                                  ) || "text"
+                                                }
+                                                className="form-control"
+                                                placeholder={`Entrer ${indexP}`}
+                                                value={c.capacity || ""}
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "capacity",
+                                                    e.target.value
+                                                  )
+                                                }
+                                                onBlur={() => {
+                                                  if (
+                                                    (indexP === "RAM" ||
+                                                      indexP === "Stockage") &&
+                                                    !isPowerOfTwo(
+                                                      parseInt(c.capacity)
+                                                    )
+                                                  ) {
+                                                    Swal.fire({
+                                                      title: `Valeur invalide pour ${indexP}`,
+                                                      html: `<h4>${indexP} doit être une puissance de 2 (ex: 2, 4, 8, ...)</h4>`,
+                                                      icon: "warning",
+                                                    });
 
+                                                    handleChangeComponent(
+                                                      device.id,
+                                                      indexP,
+                                                      "capacity",
+                                                      null
+                                                    );
+                                                  }
+                                                }}
+                                              />
+                                            </div>
+                                          )}
+
+                                          <div className="col-md-4">
+                                            <label className="form-label">
+                                              Options
+                                            </label>
+                                            <select
+                                              className="form-select"
+                                              value={c.options || ""}
+                                              onChange={(e) =>
                                                 handleChangeComponent(
                                                   device.id,
                                                   indexP,
-                                                  "capacity",
-                                                  null
-                                                );
+                                                  "options",
+                                                  e.target.value
+                                                )
                                               }
-                                            }}
-                                          />
-                                        </div>
-                                      )}
+                                            >
+                                              <option value="">
+                                                -- Sélectionner --
+                                              </option>
+                                              {showOptions(
+                                                device.type,
+                                                indexP
+                                              ).map((opt) => (
+                                                <option key={opt} value={opt}>
+                                                  {opt}
+                                                </option>
+                                              ))}
+                                            </select>
+                                          </div>
 
-                                      <div className="col-md-4">
-                                        <label className="form-label">
-                                          Options
-                                        </label>
-                                        <select
-                                          className="form-select"
-                                          value={c.options || ""}
+                                          {isComponentOtherOptions(
+                                            device.type,
+                                            indexP
+                                          ) && (
+                                            <div className="col-md-4">
+                                              <label className="form-label">
+                                                Autres options
+                                              </label>
+                                              <select
+                                                className="form-select"
+                                                value={c.otherOptions || ""}
+                                                onChange={(e) =>
+                                                  handleChangeComponent(
+                                                    device.id,
+                                                    indexP,
+                                                    "otherOptions",
+                                                    e.target.value
+                                                  )
+                                                }
+                                              >
+                                                <option value="">
+                                                  -- Sélectionner --
+                                                </option>
+                                                {showOtherOptions(
+                                                  device.type,
+                                                  indexP
+                                                ).map((opt) => (
+                                                  <option key={opt} value={opt}>
+                                                    {opt}
+                                                  </option>
+                                                ))}
+                                              </select>
+                                            </div>
+                                          )}
+                                        </div>
+                                      </>
+                                    ) : (
+                                      <div className="mt-3">
+                                        <input
+                                          type={
+                                            showType(device.type, indexP) ||
+                                            "text"
+                                          }
+                                          className="form-control"
+                                          placeholder={`Entrer ${indexP}`}
+                                          value={c.value || ""}
                                           onChange={(e) =>
                                             handleChangeComponent(
                                               device.id,
                                               indexP,
-                                              "options",
+                                              "value",
                                               e.target.value
                                             )
                                           }
-                                        >
-                                          <option value="">
-                                            -- Sélectionner --
-                                          </option>
-                                          {showOptions(device.type, indexP).map(
-                                            (opt) => (
-                                              <option key={opt} value={opt}>
-                                                {opt}
-                                              </option>
-                                            )
-                                          )}
-                                        </select>
+                                        />
                                       </div>
-
-                                      {isComponentOtherOptions(
-                                        device.type,
-                                        indexP
-                                      ) && (
-                                        <div className="col-md-4">
-                                          <label className="form-label">
-                                            Autres options
-                                          </label>
-                                          <select
-                                            className="form-select"
-                                            value={c.otherOptions || ""}
-                                            onChange={(e) =>
-                                              handleChangeComponent(
-                                                device.id,
-                                                indexP,
-                                                "otherOptions",
-                                                e.target.value
-                                              )
-                                            }
-                                          >
-                                            <option value="">
-                                              -- Sélectionner --
-                                            </option>
-                                            {showOtherOptions(
-                                              device.type,
-                                              indexP
-                                            ).map((opt) => (
-                                              <option key={opt} value={opt}>
-                                                {opt}
-                                              </option>
-                                            ))}
-                                          </select>
-                                        </div>
-                                      )}
-                                    </div>
-                                  </>
-                                ) : (
-                                  <div className="mt-3">
-                                    <input
-                                      type={
-                                        showType(device.type, indexP) || "text"
-                                      }
-                                      className="form-control"
-                                      placeholder={`Entrer ${indexP}`}
-                                      value={c.value || ""}
-                                      onChange={(e) =>
-                                        handleChangeComponent(
-                                          device.id,
-                                          indexP,
-                                          "value",
-                                          e.target.value
-                                        )
-                                      }
-                                    />
+                                    )}
                                   </div>
-                                )}
+                                )
+                              )}
+                            </div>
+                            <div className="d-flex justify-content-center">
+                              <h5>Autre?</h5>
+                              <div className="form-group">
+                                <select
+                                  name=""
+                                  id=""
+                                  className="form-select"
+                                  onChange={(e) => {
+                                    setInsertDevices((prev) => ({
+                                      ...prev,
+                                      devices: prev.devices.map((d) =>
+                                        d.id === device.id
+                                          ? {
+                                              ...d,
+                                              extraComponent: [
+                                                ...d.extraComponent,
+                                                e.target.value,
+                                              ],
+                                            }
+                                          : d
+                                      ),
+                                    }));
+                                  }}
+                                >
+                                  <option value="">Si autre attribut</option>
+                                  {showProperty(device.type).map(
+                                    (props, index) => (
+                                      <option key={index}>{props.name}</option>
+                                    )
+                                  )}
+                                </select>
                               </div>
-                            )
-                          )
+                            </div>
+                          </div>
                         )}
                         {device.extraComponent.length > 0 &&
                           device.extraComponent.map((d) =>
-                            Object.entries(d).map(([indexP, c]) => (
+                            showOptions(device.type,d).map((c,indexP) => (
                               <div
                                 key={indexP}
                                 className="card p-4 mb-4 shadow-sm"
@@ -3085,37 +3131,6 @@ export default function TableMaterial() {
                               </div>
                             ))
                           )}
-                        <div className="d-flex justify-content-center">
-                          <h5>Autre?</h5>
-                          <div className="form-group">
-                            <select
-                              name=""
-                              id=""
-                              className="form-select"
-                              onChange={(e) => {
-                                setInsertDevices((prev) => ({
-                                  ...prev,
-                                  devices: prev.devices.map((d) =>
-                                    d.id === device.id
-                                      ? {
-                                          ...d,
-                                          extraComponent: [
-                                            ...d.extraComponent,
-                                            e.target.value,
-                                          ],
-                                        }
-                                      : d
-                                  ),
-                                }));
-                              }}
-                            >
-                              <option value="">Si autre attribut</option>
-                              {showProperty(device.type).map((props, index) => (
-                                <option key={index}>{props.name}</option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
                       </div>
                     )}
                   </div>
